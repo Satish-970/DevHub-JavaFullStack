@@ -7,7 +7,7 @@
 - ✍️ Create & manage blog posts.
 - 🧠 Showcase portfolio projects.
 - 💬 Comment on other developers’ blogs.
-- 👤 Manage personal profiles (bio, image, etc.).
+- 👤 Manage personal profiles (Bio,Projects, etc.).
 
 🔐 It includes secure login with **JWT Authentication** and **role-based access control**:
 
