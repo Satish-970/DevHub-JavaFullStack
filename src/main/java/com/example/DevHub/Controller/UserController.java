@@ -2,7 +2,9 @@ package com.example.DevHub.Controller;
 
 import com.example.DevHub.Model.User;
 import com.example.DevHub.Service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -20,9 +22,11 @@ public class UserController {
     public User getbyId(@PathVariable  long id){
         return userService.getbyId(id);
     }
-    @GetMapping
-    public List<User> getAllUsers(){
-        return userService.getAllUsers();
+
+    @PostMapping
+    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
+        User savedUser = userService.createUser(user);
+        return ResponseEntity.ok(savedUser);
     }
     @PostMapping
     public void saveUser(User user){
