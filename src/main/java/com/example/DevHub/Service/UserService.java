@@ -7,9 +7,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
+
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
 
@@ -19,33 +21,56 @@ public class UserService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    public Optional<User> getById(Long id) {
+        return userRepository.findById(id);
+    }
+
     public User createUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         return userRepository.save(user);
     }
 
-    public void saveUser(User user){
-        userRepository.save(user);
-    }
-    public List<User> getAllUsers(){
-        return  userRepository.findAll();
-    }
-    public  User getbyId(long id){
-        return userRepository.getById(id);
-    }
-    public void UpdateUser(User user){
-        userRepository.save(user);
-    }
-    public User findByUsername(String username) {
-        return userRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("User not found: " + username));
-    }
-    public  void DeleteUser(long id){
-        userRepository.deleteById(id);
+    public List<User> getAllUsers() {
+        return userRepository.findAll();
     }
 
-    public User findByEmail(String email) {
-        return userRepository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("User not found: " + email));
+    public User updateUser(Long id, User userDetails) {
+        User existingUser = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalStateException("User not found with id: " + id));
+        existingUser.setUsername(userDetails.getUsername());
+        existingUser.setEmail(userDetails.getEmail());
+        if (userDetails.getPassword() != null && !userDetails.getPassword().isEmpty()) {
+            existingUser.setPassword(passwordEncoder.encode(userDetails.getPassword()));
+        }
+        return userRepository.save(existingUser);
+    }
+
+    public void deleteUser(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalStateException("User not found with id: " + id));
+        userRepository.delete(user);
+    }
+
+    public List<User> searchByUsername(String username) {
+        // Implement a custom query or use a LIKE query
+        return userRepository.findByUsernameContainingIgnoreCase(username);
+        // Add this method to UserRepository if not present:
+        // @Query("SELECT u FROM User u WHERE LOWER(u.username) LIKE LOWER(CONCAT('%', :username, '%'))")
+        // List<User> findByUsernameContainingIgnoreCase(@Param("username") String username);
+    }
+
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username).orElse(null);
+    }
+
+    /**
+     * Checks if a user with the given email exists.
+     * @param email The email to check
+     * @return true if a user with the email exists, false otherwise
+     */
+    public boolean findByEmail(String email) {
+        return userRepository.existsByEmail(email);
+        // Add this method to UserRepository if not present:
+        // boolean existsByEmail(@Param("email") String email);
     }
 }

@@ -44,7 +44,7 @@ public class AuthController {
         if (userService.findByUsername(registerRequest.getUsername()) != null) {
             return ResponseEntity.badRequest().body(new RegistrationResponse("Username already taken"));
         }
-        if (userService.findByEmail(registerRequest.getEmail()) != null) {
+        if (userService.findByEmail(registerRequest.getEmail())) {
             return ResponseEntity.badRequest().body(new RegistrationResponse("Email already registered"));
         }
 

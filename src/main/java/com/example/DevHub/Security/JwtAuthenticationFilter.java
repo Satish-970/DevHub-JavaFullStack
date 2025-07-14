@@ -2,7 +2,7 @@ package com.example.DevHub.Security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -18,6 +18,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
+import javax.crypto.SecretKey;
 import java.io.IOException;
 
 @Component
@@ -30,8 +31,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
     @Value("${jwt.secret}")
     private String jwtSecret;
 
+    private final SecretKey secretKey;
+
     public JwtAuthenticationFilter(UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
+        this.secretKey = Keys.hmacShaKeyFor(jwtSecret.getBytes());
     }
 
     @Override
@@ -42,7 +46,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         if (jwt != null) {
             try {
                 Claims claims = Jwts.parser()
-                        .verifyWith(SignatureAlgorithm.HS512, jwtSecret.getBytes())
+                        .verifyWith(secretKey)
                         .build()
                         .parseSignedClaims(jwt)
                         .getPayload();
