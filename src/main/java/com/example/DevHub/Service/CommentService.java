@@ -1,13 +1,20 @@
 package com.example.DevHub.Service;
 
 import com.example.DevHub.Model.Comment;
+import com.example.DevHub.Model.BlogPost;
+import com.example.DevHub.Model.Project;
 import com.example.DevHub.Model.User;
 import com.example.DevHub.Repository.CommentRepository;
+import com.example.DevHub.Repository.BlogPostRepository; // Added for creating blog comments
+import com.example.DevHub.Repository.ProjectRepository; // Added for creating project comments
+import com.example.DevHub.exception.AuthenticationRequiredException;
+import com.example.DevHub.exception.ResourceNotFoundException;
+import com.example.DevHub.exception.UnauthorizedOperationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime; // Added for timestamp
 import java.util.List;
 import java.util.Optional;
 
@@ -15,30 +22,61 @@ import java.util.Optional;
 public class CommentService {
 
     private final CommentRepository commentRepository;
+    private final BlogPostRepository blogPostRepository; // Injected
+    private final ProjectRepository projectRepository;   // Injected
+    private final UserService userService;               // Injected
 
     @Autowired
-    public CommentService(CommentRepository commentRepository) {
+    public CommentService(CommentRepository commentRepository, BlogPostRepository blogPostRepository, ProjectRepository projectRepository, UserService userService) {
         this.commentRepository = commentRepository;
+        this.blogPostRepository = blogPostRepository;
+        this.projectRepository = projectRepository;
+        this.userService = userService;
     }
 
     /**
-     * Creates a new comment for the authenticated user on a specific blog post.
-     * @param comment The comment details to save
+     * Creates a new comment associated with a blog post.
+     * @param comment The comment details
      * @param blogPostId The ID of the blog post
      * @return The saved comment
-     * @throws IllegalStateException if the authenticated user or blog post is not found
+     * @throws AuthenticationRequiredException if no user is authenticated
+     * @throws ResourceNotFoundException if the blog post is not found
      */
-    public Comment createComment(Comment comment, Long blogPostId) {
+    public Comment createBlogComment(Comment comment, Long blogPostId) {
         User currentUser = getCurrentUser();
         if (currentUser == null) {
-            throw new IllegalStateException("Authenticated user not found");
+            throw new AuthenticationRequiredException("User must be authenticated to comment.");
         }
-        // Assuming BlogPostService or a method to load blog post by ID
-        // For now, this is a placeholder; you'll need to implement BlogPostService
-        // BlogPost blogPost = blogPostService.findById(blogPostId)
-        //     .orElseThrow(() -> new IllegalStateException("Blog post not found with id: " + blogPostId));
+
+        BlogPost blogPost = blogPostRepository.findById(blogPostId)
+                .orElseThrow(() -> new ResourceNotFoundException("Blog post not found with id: " + blogPostId));
+
         comment.setUser(currentUser);
-        // comment.setBlogPost(blogPost); // Uncomment and adjust when BlogPostService is ready
+        comment.setBlogPost(blogPost);
+        comment.setCommentedAt(LocalDateTime.now()); // Ensure timestamp is set
+        return commentRepository.save(comment);
+    }
+
+    /**
+     * Creates a new comment associated with a project.
+     * @param comment The comment details
+     * @param projectId The ID of the project
+     * @return The saved comment
+     * @throws AuthenticationRequiredException if no user is authenticated
+     * @throws ResourceNotFoundException if the project is not found
+     */
+    public Comment createProjectComment(Comment comment, Long projectId) {
+        User currentUser = getCurrentUser();
+        if (currentUser == null) {
+            throw new AuthenticationRequiredException("User must be authenticated to comment.");
+        }
+
+        Project project = projectRepository.findById(projectId)
+                .orElseThrow(() -> new ResourceNotFoundException("Project not found with id: " + projectId));
+
+        comment.setUser(currentUser);
+        comment.setProject(project);
+        comment.setCommentedAt(LocalDateTime.now()); // Ensure timestamp is set
         return commentRepository.save(comment);
     }
 
@@ -64,53 +102,97 @@ public class CommentService {
      * @param id The comment ID to update
      * @param commentDetails The updated comment details
      * @return The updated comment
-     * @throws IllegalStateException if the comment is not found or the user is not authorized
+     * @throws ResourceNotFoundException if the comment is not found
+     * @throws UnauthorizedOperationException if the user is not authorized
+     * @throws AuthenticationRequiredException if no user is authenticated
      */
     public Comment updateComment(Long id, Comment commentDetails) {
         Comment existingComment = commentRepository.findById(id)
-                .orElseThrow(() -> new IllegalStateException("Comment not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Comment not found with id: " + id));
 
         User currentUser = getCurrentUser();
-        if (!existingComment.getUser().getId().equals(currentUser.getId())) {
-            throw new IllegalStateException("User not authorized to update this comment");
+        if (currentUser == null) {
+            throw new AuthenticationRequiredException("User must be authenticated to update a comment.");
+        }
+
+        // Only the original author or an ADMIN can update a comment
+        if (!existingComment.getUser().getId().equals(currentUser.getId()) && !currentUser.getRoles().contains("ADMIN")) {
+            throw new UnauthorizedOperationException("User not authorized to update this comment.");
         }
 
         existingComment.setContent(commentDetails.getContent());
+        // UpdatedAt will be handled automatically if @UpdateTimestamp was added, otherwise manual
         return commentRepository.save(existingComment);
     }
 
     /**
      * Deletes a comment by ID.
      * @param id The comment ID to delete
-     * @throws IllegalStateException if the comment is not found or the user is not authorized
+     * @throws ResourceNotFoundException if the comment is not found
+     * @throws UnauthorizedOperationException if the user is not authorized
+     * @throws AuthenticationRequiredException if no user is authenticated
      */
     public void deleteComment(Long id) {
         Comment comment = commentRepository.findById(id)
-                .orElseThrow(() -> new IllegalStateException("Comment not found with id: " + id));
+                .orElseThrow(() -> new ResourceNotFoundException("Comment not found with id: " + id));
 
         User currentUser = getCurrentUser();
-        if (!comment.getUser().getId().equals(currentUser.getId())) {
-            throw new IllegalStateException("User not authorized to delete this comment");
+        if (currentUser == null) {
+            throw new AuthenticationRequiredException("User must be authenticated to delete a comment.");
+        }
+
+        // Only the original author or an ADMIN can delete a comment
+        if (!comment.getUser().getId().equals(currentUser.getId()) && !currentUser.getRoles().contains("ADMIN")) {
+            throw new UnauthorizedOperationException("User not authorized to delete this comment.");
         }
 
         commentRepository.delete(comment);
     }
 
     /**
-     * Retrieves the currently authenticated user from the security context.
-     * @return The authenticated User, or null if not found
+     * Retrieves comments for a specific blog post.
+     * @param blogPostId The ID of the blog post
+     * @return List of comments for the blog post
+     * @throws ResourceNotFoundException if blog post not found
+     */
+    public List<Comment> getCommentsByBlogPostId(Long blogPostId) {
+        BlogPost blogPost = blogPostRepository.findById(blogPostId)
+                .orElseThrow(() -> new ResourceNotFoundException("Blog post not found with id: " + blogPostId));
+        return commentRepository.findByBlogPost(blogPost);
+    }
+
+    /**
+     * Retrieves comments for a specific project.
+     * @param projectId The ID of the project
+     * @return List of comments for the project
+     * @throws ResourceNotFoundException if project not found
+     */
+    public List<Comment> getCommentsByProjectId(Long projectId) {
+        Project project = projectRepository.findById(projectId)
+                .orElseThrow(() -> new ResourceNotFoundException("Project not found with id: " + projectId));
+        return commentRepository.findByProject(project);
+    }
+
+    /**
+     * Retrieves comments made by a specific user.
+     * @param userId The ID of the user
+     * @return List of comments by the user
+     * @throws ResourceNotFoundException if user not found
+     */
+    public List<Comment> getCommentsByUserId(Long userId) {
+        User user = userService.getById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found with id: " + userId));
+        return commentRepository.findByUser(user);
+    }
+
+    /**
+     * Helper to get current authenticated user. Assumes principal is User object.
      */
     private User getCurrentUser() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        if (principal instanceof UserDetails) {
-            String username = ((UserDetails) principal).getUsername();
-            // Assuming UserService or a similar method to load user by username
-            return userService.findByUsername(username); // Requires UserService injection
+        if (principal instanceof User) {
+            return (User) principal;
         }
-        return null;
+        return null; // Should be handled by @PreAuthorize or AuthenticationRequiredException
     }
-
-    // Inject UserService if needed for getCurrentUser
-    @Autowired
-    private UserService userService; // Add this field if not already present
 }

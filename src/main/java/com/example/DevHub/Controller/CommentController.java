@@ -20,7 +20,7 @@ public class CommentController {
     @PostMapping("/blog/{blogPostId}")
     public ResponseEntity<Comment> createComment(@PathVariable Long blogPostId, @RequestBody Comment comment) {
         try {
-            Comment savedComment = commentService.createComment(comment, blogPostId);
+            Comment savedComment = commentService.createBlogComment(comment, blogPostId);
             return ResponseEntity.ok(savedComment);
         } catch (IllegalStateException e) {
             return ResponseEntity.badRequest().build();

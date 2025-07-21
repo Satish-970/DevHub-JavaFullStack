@@ -1,11 +1,12 @@
-
 package com.example.DevHub.Model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -16,6 +17,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString(exclude = {"author"}) // Exclude author to prevent recursion if BlogPost.toString() is called
 @Table(name = "blog_posts")
 public class BlogPost {
 
@@ -45,5 +47,6 @@ public class BlogPost {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "author_id", nullable = false)
+    @JsonIgnore // Prevent recursion and expose via DTOs in controllers
     private User author;
 }
