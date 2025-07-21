@@ -15,85 +15,49 @@
             padding-bottom: 50px;
             overflow-x: hidden;
             scroll-behavior: smooth;
-            animation: fadeInBody 0.8s ease-in-out; /* From account.html */
+            animation: fadeInBody 0.8s ease-in-out;
         }
         @keyframes fadeInBody {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Navbar Styles (from index.html/other files) */
+        /* Navbar Styles */
         .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(17, 24, 39, 0.75); /* translucent dark */
-            backdrop-filter: blur(12px);
-            padding: 14px 40px;
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(17, 24, 39, 0.75);
+            backdrop-filter: blur(12px); padding: 14px 40px;
             z-index: 1000;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: flex; justify-content: space-between; align-items: center;
             box-shadow: 0 2px 12px rgba(0,0,0,0.4);
             border-bottom: 1px solid rgba(255, 255, 255, 0.06);
         }
         .navbar .brand {
-            font-size: 20px;
-            font-weight: 700;
+            font-size: 20px; font-weight: 700;
             background: linear-gradient(135deg, #3b82f6, #60a5fa);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             letter-spacing: 1px;
         }
         .navbar ul {
-            list-style: none;
-            display: flex;
-            gap: 28px;
-            margin: 0;
-            padding: 0;
+            list-style: none; display: flex; gap: 28px; margin: 0; padding: 0;
         }
-        .navbar a:hover {
-            box-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
-        }
-        .navbar li {
-            position: relative;
-        }
+        .navbar a:hover { box-shadow: 0 0 8px rgba(59, 130, 246, 0.3); }
+        .navbar li { position: relative; }
         .navbar a {
-            color: #f1f5f9;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 16px;
-            padding: 8px 12px;
-            position: relative;
-            transition: all 0.3s ease;
+            color: #f1f5f9; text-decoration: none; font-weight: 600; font-size: 16px;
+            padding: 8px 12px; position: relative; transition: all 0.3s ease;
         }
         .navbar a::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            height: 2px;
-            width: 100%;
-            background: #3b82f6;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.3s ease;
+            content: ''; position: absolute; left: 0; bottom: 0; height: 2px; width: 100%;
+            background: #3b82f6; transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease;
         }
-        .navbar a:hover::after {
-            transform: scaleX(1);
-        }
-        .navbar a:hover {
-            color: #3b82f6;
-            transform: translateY(-1px);
-        }
+        .navbar a:hover::after { transform: scaleX(1); }
+        .navbar a:hover { color: #3b82f6; transform: translateY(-1px); }
         .navbar .active {
             color: #3b82f6;
             text-shadow: 0 0 6px rgba(59, 130, 246, 0.5);
         }
-        .navbar {
-            justify-content: space-between;
-        }
+        .navbar { justify-content: space-between; }
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: column;
@@ -111,22 +75,10 @@
         }
 
         /* Common Container Styles */
-        .dashboard-container,
-        .comment-container,
-        .project-container,
-        .account-container,
-        .user-profile-container,
-        .admin-container {
-            padding: 20px;
-            margin-top: 60px;
-            max-width: 1200px; /* Adjust as needed for specific pages */
-            margin-left: auto;
-            margin-right: auto;
-            background: rgba(255, 255, 255, 0.05); /* Account/Project/Comment container inner background */
-            backdrop-filter: blur(12px);
-            border-radius: 18px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        .dashboard-container, .comment-container, .project-container, .account-container, .user-profile-container, .admin-container {
+            padding: 20px; margin-top: 60px; max-width: 1200px; margin-left: auto; margin-right: auto;
+            background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(12px); border-radius: 18px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4); border: 1px solid rgba(255, 255, 255, 0.1);
         }
         .comment-container, .account-container, .user-profile-container { max-width: 900px; }
         .project-container { max-width: 950px; }
@@ -134,139 +86,77 @@
 
         /* Common Heading Styles */
         h2 {
-            margin-bottom: 25px;
-            color: #60a5fa;
-            text-align: center;
-            font-size: 32px;
-            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+            margin-bottom: 25px; color: #60a5fa; text-align: center; font-size: 32px; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
         }
         h2.section-title {
-            letter-spacing: 1px;
-            position: relative;
+            letter-spacing: 1px; position: relative;
         }
-        h2.section-title::after { /* From admin.css */
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: -8px;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: #3b82f6;
-            border-radius: 6px;
-            box-shadow: 0 0 6px rgba(59, 130, 246, 0.5);
+        h2.section-title::after {
+            content: ''; position: absolute; left: 50%; bottom: -8px; transform: translateX(-50%);
+            width: 80px; height: 3px; background: #3b82f6; border-radius: 6px; box-shadow: 0 0 6px rgba(59, 130, 246, 0.5);
         }
-        h3 { /* For modal titles, project/blog titles etc. */
-            text-align: center;
-            margin-bottom: 20px;
-            font-size: 20px;
-            color: #1e3a8a; /* For modal h3s */
+        h3 {
+            text-align: center; margin-bottom: 20px; font-size: 20px; color: #1e3a8a;
         }
         .blog-title, .project-title {
-            font-size: 22px;
-            font-weight: 600;
-            color: #f9fafb;
-            margin-bottom: 6px;
-            transition: color 0.3s ease;
+            font-size: 22px; font-weight: 600; color: #f9fafb; margin-bottom: 6px; transition: color 0.3s ease;
         }
         .blog-title:hover { color: #3b82f6; cursor: pointer; }
 
 
         /* Common Filter Box */
         .filter-box {
-            width: 100%;
-            padding: 12px 14px;
-            margin-bottom: 20px;
-            border: 1px solid #334155;
-            background-color: #1e293b;
-            border-radius: 8px;
-            font-size: 15px;
-            color: #f8fafc;
-            transition: border 0.3s ease;
+            width: 100%; padding: 12px 14px; margin-bottom: 20px;
+            border: 1px solid #334155; background-color: #1e293b; border-radius: 8px;
+            font-size: 15px; color: #f8fafc; transition: border 0.3s ease;
         }
-        .filter-box:focus {
-            border-color: #60a5fa;
-            outline: none;
-        }
+        .filter-box:focus { border-color: #60a5fa; outline: none; }
 
         /* Common Buttons */
-        .create-btn, .add-btn { /* Combined create/add buttons */
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
-            color: white;
-            padding: 10px 18px;
-            border: none;
-            border-radius: 8px;
-            margin-bottom: 20px;
-            cursor: pointer;
-            font-size: 15px;
-            transition: all 0.3s ease;
-            box-shadow:
-                0 0 10px rgba(59, 130, 246, 0.4),
-                0 0 20px rgba(59, 130, 246, 0.3),
-                0 0 30px rgba(59, 130, 246, 0.2);
+        .create-btn, .add-btn {
+            background: linear-gradient(135deg, #3b82f6, #2563eb); color: white;
+            padding: 10px 18px; border: none; border-radius: 8px; margin-bottom: 20px;
+            cursor: pointer; font-size: 15px; transition: all 0.3s ease;
+            box-shadow: 0 0 10px rgba(59, 130, 246, 0.4), 0 0 20px rgba(59, 130, 246, 0.3), 0 0 30px rgba(59, 130, 246, 0.2);
         }
-        .create-btn:hover, .add-btn:hover {
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
-            transform: translateY(-2px);
-        }
+        .create-btn:hover, .add-btn:hover { background: linear-gradient(135deg, #2563eb, #1d4ed8); transform: translateY(-2px); }
         .submit-btn, .cancel-btn {
-            padding: 10px 14px;
-            font-size: 14px;
-            border: none;
-            margin-right: 10px;
-            border-radius: 6px;
-            cursor: pointer;
+            padding: 10px 14px; font-size: 14px; border: none; margin-right: 10px; border-radius: 6px; cursor: pointer;
         }
-        .submit-btn { background-color: #10b981; color: white; } /* Green for save */
+        .submit-btn { background-color: #10b981; color: white; }
         .submit-btn:hover { background-color: #059669; }
         .cancel-btn { background-color: #6b7280; color: white; }
         .cancel-btn:hover { background-color: #4b5563; }
 
         /* Action Buttons within cards */
         .blog-actions button, .project-actions button, .comment-actions button, .user-actions button {
-            padding: 6px 12px;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 13px;
-            transition: background-color 0.2s ease, transform 0.2s ease;
-            margin-left: 10px; /* Default margin for multiple buttons */
+            padding: 6px 12px; border: none; border-radius: 6px; cursor: pointer; font-size: 13px;
+            transition: background-color 0.2s ease, transform 0.2s ease; margin-left: 10px;
         }
-        .user-actions button { width: 45%; margin-left: 0; } /* Specific for user-actions */
-        .edit-btn { background-color: #facc15; color: #1e293b; } /* Yellow for edit */
+        .user-actions button { width: 45%; margin-left: 0; }
+        .edit-btn { background-color: #facc15; color: #1e293b; }
         .edit-btn:hover { background-color: #eab308; transform: scale(1.05); }
-        .delete-btn { background-color: #ef4444; color: white; } /* Red for delete */
+        .delete-btn { background-color: #ef4444; color: white; }
         .delete-btn:hover { background-color: #dc2626; transform: scale(1.05); }
-        .view { background-color: #22c55e; color: white; } /* Green for view */
+        .view { background-color: #22c55e; color: white; }
         .view:hover { background-color: #16a34a; }
 
 
         /* Common Card Styles */
         .dev-card, .blog-card, .project-card, .comment-card, .user-card, .profile-card, .user-info {
-            background: rgba(31, 41, 55, 0.95); /* Darker background for cards */
-            border: 1px solid #3b82f6; /* Blue border */
-            border-radius: 16px;
-            padding: 20px;
-            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.1);
-            backdrop-filter: blur(10px);
+            background: rgba(31, 41, 55, 0.95); border: 1px solid #3b82f6; border-radius: 16px;
+            padding: 20px; box-shadow: 0 6px 16px rgba(59, 130, 246, 0.1); backdrop-filter: blur(10px);
             transition: transform 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease;
         }
         .blog-card, .project-card {
-            background: rgba(255, 255, 255, 0.06); /* Lighter background for these */
-            border: 1px solid #334155;
-            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3);
-            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.06); border: 1px solid #334155;
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.3); border-radius: 12px;
         }
         .comment-card {
-            background-color: rgba(255, 255, 255, 0.08); /* Even lighter for comments */
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 14px;
-            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
-            display: flex; /* For avatar & content layout */
-            gap: 16px;
-            align-items: flex-start;
+            background-color: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 14px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25); display: flex; gap: 16px; align-items: flex-start;
         }
-        .user-card { border: 1px solid #3b82f6; } /* Admin user card */
+        .user-card { border: 1px solid #3b82f6; }
 
 
         .dev-card:hover, .user-card:hover { transform: translateY(-8px); box-shadow: 0 8px 22px rgba(59, 130, 246, 0.25); filter: brightness(1.05); }
@@ -274,14 +164,15 @@
         .comment-card:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3); }
 
         /* Card Specifics */
-        .dev-card img, .user-img, .profile-img { /* Avatar styles */
+        .dev-card img, .user-img, .profile-img {
             width: 90px; height: 90px; border-radius: 50%; object-fit: cover;
             border: 3px solid #3b82f6; display: block; margin: 0 auto;
         }
-        .user-img, .profile-img { width: 120px; height: 120px; } /* Larger for account page */
-        .comment-avatar { /* Specific for comment card */
+        .user-img, .profile-img { width: 120px; height: 120px; }
+        .comment-avatar {
             width: 48px; height: 48px; border-radius: 50%; background-color: #334155; flex-shrink: 0;
-            background-image: url('https://i.pravatar.cc/150?img=12'); background-size: cover; background-position: center;
+            background-image: url('assets/default-profile.png');
+            background-size: cover; background-position: center;
         }
 
         /* Info/Meta Text */
@@ -298,19 +189,14 @@
 
         /* Form Elements (common for modals) */
         .modal-content {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 30px;
-            border-radius: 16px;
-            width: 95%; max-width: 500px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            animation: zoomIn 0.25s ease;
+            background: rgba(255, 255, 255, 0.95); padding: 30px; border-radius: 16px;
+            width: 95%; max-width: 500px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); animation: zoomIn 0.25s ease;
             color: #1e293b;
         }
         .modal-content label { display: block; margin-bottom: 5px; font-weight: 500; color: #1e293b; }
         .modal-content input, .modal-content textarea {
             width: 100%; padding: 10px 14px; margin-bottom: 16px;
-            border-radius: 6px; border: 1px solid #ccc;
-            font-size: 15px; resize: vertical;
+            border-radius: 6px; border: 1px solid #ccc; font-size: 15px; resize: vertical;
         }
         .modal-content input:focus, .modal-content textarea:focus { border-color: #2563eb; outline: none; }
 
@@ -319,10 +205,10 @@
         .developer-grid, .user-grid, .comment-grid, .project-list, .blog-list {
             display: flex; flex-wrap: wrap; gap: 24px; justify-content: center;
         }
-        .project-list, .blog-list { flex-direction: column; } /* Vertical list for blogs/projects */
+        .project-list, .blog-list { flex-direction: column; }
         .admin-container .user-grid { margin-top: 20px; }
         .admin-container .comment-grid { margin-top: 30px; }
-        .grid-list { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); } /* For account page project list */
+        .grid-list { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
 
         /* Utility */
         .hidden { display: none; }
@@ -346,122 +232,111 @@
         /* Animations */
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeInModal { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes zoomIn { from { transform: scale(0.95); } to { transform: scale(1); } }
-        .account-container {
-    max-width: 700px;
-    margin: 70px auto 0 auto;
-    background: rgba(31, 41, 55, 0.88);
-    border-radius: 18px;
-    box-shadow: 0 6px 24px rgba(59,130,246,0.18);
-    padding: 40px 35px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        @keyframes zoomIn { from { transform: scale(0.95); } to { transform: 1; } }
 
-.profile-card {
-    background: rgba(20,25,38,0.95);
-    border: 1px solid #3b82f6;
-    border-radius: 16px;
-    padding: 32px 30px 32px 30px;
-    width: 100%;
-    max-width: 400px;
-    margin: 0 auto;
-    box-shadow: 0 8px 22px rgba(59,130,246,0.25);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        /* --- Account Page Specific CSS Adjustments (applied to the template's structure) --- */
+        #my-account-container form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+        }
+        #my-account-container form label {
+            text-align: left;
+            width: 100%;
+        }
+        #my-account-container form input[type="text"],
+        #my-account-container form input[type="email"],
+        #my-account-container form input[type="url"],
+        #my-account-container form textarea {
+            width: calc(100% - 24px);
+            max-width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 0;
+            background-color: #f1f5f9;
+            color: #1e293b;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 12px;
+            font-size: 14px;
+        }
+        #my-account-container .btn-group {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            width: 100%;
+        }
+        #my-account-container .btn-group button {
+            flex-grow: 1; max-width: 150px; margin-left: 0;
+        }
+        .profile-card {
+            width: calc(100% - 40px);
+            box-sizing: border-box;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+        }
+        .profile-img { margin-bottom: 15px; }
+        .edit-img-btn { margin-top: 5px; }
 
-.profile-img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #3b82f6;
-    background: #23263d;
-    margin-bottom: 16px;
-}
-
-.edit-img-btn {
-    background: linear-gradient(135deg, #3b82f6, #2563eb);
-    color: white;
-    padding: 8px 16px;
-    border: none;
-    border-radius: 8px;
-    margin-bottom: 28px;
-    margin-top: 4px;
-    cursor: pointer;
-    font-size: 14px;
-}
-
-#profileForm {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-#profileForm label {
-    margin-bottom: 5px;
-    color: #94a3b8;
-    font-size: 14px;
-}
-
-#profileForm input, #profileForm textarea {
-    width: 100%;
-    padding: 10px 13px;
-    margin-bottom: 16px;
-    border-radius: 7px;
-    border: 1px solid #334155;
-    background: #202742;
-    color: #f1f5f9;
-    font-size: 15px;
-    resize: vertical;
-}
-
-#profileForm textarea {
-    min-height: 72px;
-    max-height: 160px;
-}
-
-#profileForm input:read-only {
-    background: #22262d;
-    color: #7e879e;
-}
-
-.btn-group {
-    display: flex;
-    gap: 12px;
-    justify-content: flex-end;
-}
-
-.save-btn, .cancel-btn {
-    padding: 8px 18px;
-    font-size: 14px;
-    border: none;
-    border-radius: 7px;
-    transition: background 0.2s;
-    cursor: pointer;
-}
-
-.save-btn {
-    background: linear-gradient(135deg, #10b981, #059669);
-    color: white;
-}
-
-.cancel-btn {
-    background: #64748b;
-    color: white;
-}
-
-.save-btn:hover { background: #059669; }
-.cancel-btn:hover { background: #475569; }
-
+        /* Styles for userProfileProjectList, userProfileBlogList, userProfileCommentList */
+        #userProfileProjectList, #userProfileBlogList, #userProfileCommentList {
+            margin: 0; padding: 0; list-style: none;
+        }
+        #userProfileBlogList li, #userProfileCommentList li {
+            padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        #userProfileBlogList li:last-child, #userProfileCommentList li:last-child {
+            border-bottom: none;
+        }
+        /* New CSS for Add Comment section in external profile view */
+        .add-comment-section {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px dashed rgba(255,255,255,0.1);
+        }
+        .add-comment-section textarea {
+            width: calc(100% - 20px); /* Adjust for padding */
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #4a5a7a;
+            background-color: #1f293b;
+            color: #f1f5f9;
+            font-size: 14px;
+            resize: vertical;
+            min-height: 40px;
+        }
+        .add-comment-section textarea:focus {
+            outline: none;
+            border-color: #60a5fa;
+        }
+        .add-comment-section button {
+            align-self: flex-end; /* Align button to the right */
+            background-color: #3b82f6;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            width: auto; /* Override default 100% for some common buttons */
+        }
+        .add-comment-section button:hover {
+            background-color: #2563eb;
+        }
     </style>
 </head>
 <body>
 
 <nav class="navbar">
+
     <ul>
         <li><a href="#/">DEV - HUB</a></li>
         <li><a href="#/blogs" data-route="blogs">Blogs</a></li>
@@ -469,7 +344,7 @@
         <li><a href="#/comments" data-route="comments">Comments</a></li>
         <li><a href="#/account" data-route="account">Account</a></li>
         <li><a href="#/admin" data-route="admin">Admin Panel</a></li>
-        <li><a href="#/login" onclick="logout()">Logout</a></li>
+        <li><a href="#/logout" onclick="logout()">Logout</a></li>
     </ul>
 </nav>
 
@@ -559,23 +434,12 @@
             <button class="edit-img-btn" onclick="document.getElementById('imageUpload').click()">Change Image</button>
 
             <form id="profileForm">
-                <label for="userName">Username:</label>
-                <input type="text" id="userName" placeholder="Your Username" required readonly />
-
-                <label for="userEmail">Email:</label>
-                <input type="email" id="userEmail" readonly />
-
-                <label for="userBio">Bio:</label>
-                <textarea id="userBio" placeholder="Tell us about yourself..." rows="4"></textarea>
-
-                <label for="userLinkedIn">LinkedIn URL:</label>
-                <input type="url" id="userLinkedIn" placeholder="https://linkedin.com/in/..." />
-
-                <label for="userGitHub">GitHub URL:</label>
-                <input type="url" id="userGitHub" name="userGitHub" placeholder="https://github.com/..." /> <div class="btn-group">
-                <button type="submit" class="save-btn">Save</button>
-                <button type="button" class="cancel-btn" onclick="resetForm()">Cancel</button>
-            </div>
+                <label for="userName">Username:</label><input type="text" id="userName" placeholder="Your Username" required readonly />
+                <label for="userEmail">Email:</label><input type="email" id="userEmail" readonly />
+                <label for="userBio">Bio:</label><textarea id="userBio" placeholder="Tell us about yourself..." rows="4"></textarea>
+                <label for="userLinkedIn">LinkedIn URL:</label><input type="url" id="userLinkedIn" placeholder="https://linkedin.com/in/..." />
+                <label for="userGitHub">GitHub URL:</label><input type="url" id="userGitHub" placeholder="https://github.com/..." />
+                <div class="btn-group"><button type="submit" class="save-btn">Save</button><button type="button" class="cancel-btn" onclick="resetForm()">Cancel</button></div>
             </form>
         </div>
     </div>
@@ -629,9 +493,9 @@
     const blogBaseUrl = "http://localhost:8080/api/blog-posts";
     const commentBaseUrl = "http://localhost:8080/api/comments";
 
-    let token = localStorage.getItem("token");
-    let currentLoggedInUserId = null;
-    let currentUserRoles = [];
+    let token = localStorage.getItem("token"); // Global token variable
+    let currentLoggedInUserId = null; // Global variable for logged-in user ID (from JWT payload)
+    let currentUserRoles = []; // Global variable for logged-in user roles (e.g., ['ROLE_USER'])
 
     // --- Utility Functions ---
 
@@ -799,11 +663,16 @@
                 if (profileForm) profileForm.addEventListener('submit', handleProfileFormSubmit);
                 if (imageUploadInput) imageUploadInput.addEventListener('change', handleImageUpload);
                 if (cancelButton) cancelButton.addEventListener('click', resetForm);
+
+                // Specific binding for add comment buttons on external profile view
+                if (document.getElementById('otherUserProfile') && !document.getElementById('otherUserProfile').classList.contains('hidden')) {
+                     // The renderAddCommentFormsForExternalProfile is already called inside displayExternalUserProfile
+                     // We just need to make sure its listeners are bound.
+                     bindAddCommentFormsForExternalProfile();
+                }
                 break;
             case '/admin':
-                // For admin panel, the buttons are created dynamically inside renderAdminUsers/renderAdminComments
-                // Their onclicks are already directly on the HTML string (e.g., onclick="editUserAdmin(...)")
-                // No need for explicit addEventListeners here unless there are global admin filters/forms
+                // No forms/filters in admin, but if added later, bind here
                 break;
             default:
                 // No specific listeners for dashboard
@@ -972,7 +841,7 @@
         if (!token) { alert('You are not logged in.'); logout(); return; }
         try {
             const res = await fetch(`${blogBaseUrl}/${blogId}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } });
-            if (!res.ok) { if (res.status === 401 || res.status === 403) { alert('Session expired or unauthorized. Please log in.'); logout(); return; } const errorResult = await res.json().catch(() => ({ message: 'Server error' })); throw new Error(errorResult.message || `Failed to delete blog: ${res.status}`); }
+            if (!res.ok) { if (res.status === 401 || res.status === 403) { alert('Session expired or unauthorized. Please log in.'); logout(); return; } const errorResult = res.json().catch(() => ({ message: 'Server error' })); throw new Error(errorResult.message || `Failed to delete blog: ${res.status}`); }
             alert('Blog post deleted successfully!'); await loadBlogsContent();
         } catch (error) { console.error('Error deleting blog:', error); alert('Error: ' + error.message); }
     }
@@ -1003,8 +872,8 @@
             });
             if (!res.ok) {
                 if (res.status === 401 || res.status === 403) { alert('Session expired or unauthorized. Please log in.'); logout(); return; }
-                const errorResult = await res.json().catch(() => ({ message: 'Failed to load projects' }));
-                throw new Error(errorResult.message || `Failed to fetch projects: ${res.status}`);
+                const errorResult = await res.json().catch(() => ({ message: 'Server error' }));
+                throw new Error(errorResult.message || `Failed to load projects: ${res.status}`);
             }
             const projects = await res.json();
             renderProjects(projects);
@@ -1038,8 +907,8 @@
                     ${project.demoUrl ? `<a href="${project.demoUrl}" target="_blank">Live Demo</a>` : ''}
                 </div>
                 <div class="project-actions">
-                    ${canEditOrDelete ? `<button class="edit-btn" onclick="openProjectModal(${project.id})">Edit</button>` : ''}
-                    ${canEditOrDelete ? `<button class="delete-btn" onclick="deleteProject(${project.id})">Delete</button>` : ''}
+                    ${canEditOrDelete ? `<button class="edit" onclick="openProjectModal(${project.id})">Edit</button>` : ''}
+                    ${canEditOrDelete ? `<button class="delete" onclick="deleteProject(${project.id})">Delete</button>` : ''}
                 </div>
             `;
             projectListDiv.appendChild(projectCard);
@@ -1088,7 +957,7 @@
         try {
             let res;
             if (currentEditingProjectId) { res = await fetch(`${projectBaseUrl}/${currentEditingProjectId}`, { method: 'PUT', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }, body: JSON.stringify(projectData) }); }
-            else { res = await fetch(projectBaseUrl, { method: 'POST', headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token}` }, body: JSON.stringify(projectData) }); }
+            else { res = await fetch(projectBaseUrl, { method: "POST", headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` }, body: JSON.stringify(projectData) }); }
             if (!res.ok) { if (res.status === 401 || res.status === 403) { alert('Session expired or unauthorized. Please log in.'); logout(); return; } const errorResult = await res.json().catch(() => ({ message: 'Server error' })); throw new Error(errorResult.message || `Failed to save project: ${res.status}`); }
             alert(`Project ${currentEditingProjectId ? 'updated' : 'created'} successfully!`); closeProjectModal(); await loadProjectsContent();
         } catch (error) { console.error('Error saving project:', error); alert("Error: " + error.message); }
@@ -1098,10 +967,10 @@
         if (!token) { alert('You are not logged in.'); logout(); return; }
         try {
             const res = await fetch(`${projectBaseUrl}/${projectId}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } });
-            if (!res.ok) { if (res.status === 401 || res.status === 403) { alert('Session expired or unauthorized. Please log in.'); logout(); return; } const errorResult = await res.json().catch(() => ({ message: 'Server error' })); throw new Error(errorResult.message || `Failed to delete project: ${res.status}`); }
+            if (!res.ok) { if (res.status === 401 || res.status === 403) { alert('Session expired or unauthorized. Please log in.'); logout(); return; } const errorResult = res.json().catch(() => ({ message: 'Server error' })); throw new Error(errorResult.message || `Failed to delete project: ${res.status}`); }
             alert('Project deleted successfully!'); await loadProjectsContent();
         } catch (error) { console.error('Error deleting project:', error); alert('Error: ' + error.message); }
-        }
+    }
     function projectFilterHandler(event) {
         const searchTerm = event.target.value.toLowerCase();
         const projectCards = document.querySelectorAll('#projectList .project-card');
@@ -1124,16 +993,62 @@
         if (!currentUserId) { alert('User ID not found for comments. Please log in.'); logout(); return; }
 
         try {
-            const res = await fetch(`${commentBaseUrl}?userId=${currentUserId}`, {
+            // --- Fetch comments made by the current user ---
+            const myCommentsRes = await fetch(`${commentBaseUrl}?userId=${currentUserId}`, {
                 headers: { Authorization: `Bearer ${token}`, "Content-Type": "application/json" }
             });
-            if (!res.ok) {
-                if (res.status === 401 || res.status === 403) { alert('Session expired or unauthorized. Please log in.'); logout(); return; }
-                const errorResult = await res.json().catch(() => ({ message: 'Server error' }));
-                throw new Error(errorResult.message || `Failed to load comments: ${res.status}`);
+            let myComments = [];
+            if (myCommentsRes.ok) {
+                myComments = await myCommentsRes.json();
+            } else {
+                console.warn(`Failed to fetch comments made by user ${currentUserId}: ${myCommentsRes.status}`, await myCommentsRes.json().catch(() => ({})));
             }
-            const comments = await res.json();
-            renderComments(comments);
+
+            let commentsOnMyContent = [];
+            // Only fetch if it's my own profile (not external), also load comments ON my content
+            // The `currentLoadedProfileId` is for the Account page, but here we always want currentLoggedInUser's content comments.
+            // Simplified condition for clarity: if on comments page, assume current user.
+            // If you wanted to view another user's comments on their content, you'd need a userId param on /comments route.
+
+            // Get current user's blogs
+            const myBlogsRes = await fetch(`${blogBaseUrl}?authorId=${currentLoggedInUserId}`, { headers: { Authorization: `Bearer ${token}` } });
+            if (myBlogsRes.ok) {
+                const myBlogs = await myBlogsRes.json();
+                for (const blog of myBlogs) {
+                    const commentsRes = await fetch(`${commentBaseUrl}?blogPostId=${blog.id}`, { headers: { Authorization: `Bearer ${token}` } });
+                    if (commentsRes.ok) {
+                        commentsOnMyContent.push(...await commentsRes.json());
+                    } else {
+                        console.warn(`Failed to fetch comments on blog ${blog.id}: ${commentsRes.status}`);
+                    }
+                }
+            } else {
+                console.warn(`Failed to fetch current user's blogs for comments: ${myBlogsRes.status}`);
+            }
+
+            // Get current user's projects
+            const myProjectsRes = await fetch(`${projectBaseUrl}?creatorId=${currentLoggedInUserId}`, { headers: { Authorization: `Bearer ${token}` } });
+            if (myProjectsRes.ok) {
+                const myProjects = await myProjectsRes.json();
+                for (const project of myProjects) {
+                    const commentsRes = await fetch(`${commentBaseUrl}?projectId=${project.id}`, { headers: { Authorization: `Bearer ${token}` } });
+                    if (commentsRes.ok) {
+                        commentsOnMyContent.push(...await commentsRes.json());
+                    } else {
+                        console.warn(`Failed to fetch comments on project ${project.id}: ${commentsRes.status}`);
+                    }
+                }
+            } else {
+                console.warn(`Failed to fetch current user's projects for comments: ${myProjectsRes.status}`);
+            }
+
+
+            // Combine and deduplicate comments
+            const allComments = [...myComments, ...commentsOnMyContent];
+            const uniqueComments = Array.from(new Map(allComments.map(item => [item.id, item])).values()); // Deduplicate by comment ID
+
+            renderComments(uniqueComments); // Render combined comments
+
         } catch (error) {
             console.error('Error fetching comments:', error);
             commentListDiv.innerHTML = '<p style="text-align:center; color:red;">Error loading your comments.</p>';
@@ -1159,6 +1074,8 @@
                 : (comment.project
                     ? `<a href="#/projects?projectId=${comment.project.id}">Project: ${comment.project.title || 'N/A'}</a>`
                     : 'N/A');
+            const parentTypeDisplay = comment.blogPost ? 'Blog Post' : (comment.project ? 'Project' : 'Content'); // "Content" if neither
+
             const canEditOrDelete = isAdmin || (currentUserId && currentUserId === authorId);
 
             commentCard.innerHTML = `
@@ -1169,7 +1086,7 @@
                         <span class="comment-date"> on ${commentedDate}</span>
                     </div>
                     <p class="comment-body">${comment.content}</p>
-                    <p class="comment-meta">On: ${parentLink}</p>
+                    <p class="comment-meta">On ${parentTypeDisplay}: ${parentLink}</p>
                     <div class="comment-actions">
                         ${canEditOrDelete ? `<button onclick="editComment(${comment.id})">Edit</button>` : ''}
                         ${canEditOrDelete ? `<button onclick="deleteComment(${comment.id})">Delete</button>` : ''}
@@ -1207,7 +1124,10 @@
     async function loadAccountContent() {
         const myAccountContainer = document.getElementById('my-account-container');
         const otherUserProfileContainer = document.getElementById('otherUserProfile');
-        if (!myAccountContainer || !otherUserProfileContainer) return;
+        if (!myAccountContainer || !otherUserProfileContainer) {
+            console.error("Account page containers not found in DOM.");
+            return;
+        }
 
         const urlParams = new URLSearchParams(window.location.hash.substring(1).split('?')[1]);
         const userIdFromUrl = urlParams.get('userId');
@@ -1215,13 +1135,13 @@
         let targetUserId;
         let isExternalView = false;
 
-        if (userIdFromUrl) {
+        if (userIdFromUrl && userIdFromUrl != currentLoggedInUserId) { // Check if it's truly external
             targetUserId = userIdFromUrl;
             isExternalView = true;
             myAccountContainer.classList.add('hidden');
             otherUserProfileContainer.classList.remove('hidden');
         } else {
-            targetUserId = currentLoggedInUserId;
+            targetUserId = currentLoggedInUserId; // Always load own profile by default if no explicit external ID
             myAccountContainer.classList.remove('hidden');
             otherUserProfileContainer.classList.add('hidden');
         }
@@ -1231,7 +1151,7 @@
             logout();
             return;
         }
-        currentLoadedProfileId = targetUserId;
+        currentLoadedProfileId = targetUserId; // Store the ID of the profile currently displayed
 
         try {
             const res = await fetch(`${userBaseUrl}/${targetUserId}`, {
@@ -1239,7 +1159,7 @@
             });
             if (!res.ok) {
                 if (res.status === 401 || res.status === 403) { alert('Session expired or unauthorized. Please log in.'); logout(); return; }
-                const errorResult = await res.json().catch(() => ({ message: 'Failed to load user profile' }));
+                const errorResult = await res.json().catch(() => ({ message: 'Server error' }));
                 throw new Error(errorResult.message || `Failed to fetch user: ${res.status}`);
             }
             const user = await res.json();
@@ -1255,6 +1175,11 @@
             await loadUserProjects(targetUserId, isExternalView);
             await loadUserBlogs(targetUserId, isExternalView);
             await loadUserComments(targetUserId, isExternalView);
+
+            // Bind add comment forms for external profiles AFTER their content is loaded
+            if (isExternalView) {
+                bindAddCommentFormsForExternalProfile();
+            }
 
         } catch (error) {
             console.error('Error loading user profile:', error);
@@ -1319,6 +1244,69 @@
             if (devImage) devImage.src = result.profileImageUrl || URL.createObjectURL(file);
         } catch (error) { console.error('Image upload error:', error); alert('Error uploading image: ' + error.message); }
     }
+
+    // --- New: Render "Add Comment" forms for external profile's content and bind listeners ---
+    // This function is called within loadAccountContent() after blogs/projects are loaded
+    function bindAddCommentFormsForExternalProfile() {
+        const userProfileProjectList = document.getElementById('userProfileProjectList');
+        const userProfileBlogList = document.getElementById('userProfileBlogList');
+
+        // Bind for Projects
+        if (userProfileProjectList) {
+            userProfileProjectList.querySelectorAll('.add-comment-section button').forEach(button => {
+                // Ensure existing onclick is replaced or handled properly
+                button.removeEventListener('click', addCommentHandler); // Remove if previously attached
+                button.addEventListener('click', addCommentHandler);
+            });
+        }
+
+        // Bind for Blogs
+        if (userProfileBlogList) {
+            userProfileBlogList.querySelectorAll('.add-comment-section button').forEach(button => {
+                button.removeEventListener('click', addCommentHandler); // Remove if previously attached
+                button.addEventListener('click', addCommentHandler);
+            });
+        }
+    }
+
+    // Common handler for adding comments to blog/project
+    async function addCommentHandler(event) {
+        const button = event.target;
+        const parentId = button.dataset.parentId;
+        const parentType = button.dataset.parentType;
+        const commentTextarea = document.getElementById(`commentOn${parentType.charAt(0).toUpperCase() + parentType.slice(1)}${parentId}`);
+
+        if (!commentTextarea) {
+            console.error(`Textarea not found for ${parentType} ID: ${parentId}`);
+            alert('Comment textarea not found.');
+            return;
+        }
+
+        const commentContent = commentTextarea.value.trim();
+
+        if (!commentContent) { alert("Comment cannot be empty."); return; }
+        if (!token) { alert("You're not logged in."); logout(); return; }
+
+        try {
+            const res = await fetch(`${commentBaseUrl}/${parentType}/${parentId}`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` },
+                body: JSON.stringify({ content: commentContent })
+            });
+            if (!res.ok) {
+                if (res.status === 401 || res.status === 403) { alert('Session expired or unauthorized. Please log in.'); logout(); return; }
+                const errorResult = await res.json().catch(() => ({ message: 'Server error' })); throw new Error(errorResult.message || `Failed to add comment: ${res.status}`);
+            }
+            alert("Comment added successfully!");
+            commentTextarea.value = ''; // Clear textarea
+            // After adding, refresh comments on the current profile view
+            if (window.location.hash.startsWith('#/account')) {
+                 await loadUserComments(currentLoadedProfileId, true); // Reload comments for current profile (external view)
+            }
+        } catch (error) { console.error('Error adding comment:', error); alert('Error adding comment: ' + error.message); }
+    }
+
+
     // Load associated data for user profile
     async function loadUserProjects(userId, isExternalView) {
         const projectListDiv = document.getElementById(isExternalView ? 'userProfileProjectList' : 'projectList');
@@ -1330,7 +1318,14 @@
             if (projects.length === 0) { projectListDiv.innerHTML = '<p class="empty-msg">No projects to show.</p>'; return; }
             projects.forEach(project => {
                 const projectCard = document.createElement('div'); projectCard.className = 'project-card';
-                projectCard.innerHTML = `<h4>${project.title}</h4><p>${project.description.substring(0, 100)}${project.description.length > 100 ? '...' : ''}</p><p style="font-size: 13px; color: #94a3b8;">Tech: ${project.techStack}</p>${project.url ? `<a href="${project.url}" target="_blank">View on GitHub</a>` : ''}`;
+                projectCard.innerHTML = `<h4>${project.title}</h4><p>${project.description.substring(0, 100)}${project.description.length > 100 ? '...' : ''}</p><p style="font-size: 13px; color: #94a3b8;">Tech: ${project.techStack}</p>${project.url ? `<a href="${project.url}" target="_blank">View on GitHub</a>` : ''}
+                ${isExternalView ? `
+                    <div class="add-comment-section">
+                        <textarea id="commentOnProject${project.id}" placeholder="Add a comment..."></textarea>
+                        <button data-parent-id="${project.id}" data-parent-type="project">Comment</button>
+                    </div>
+                ` : ''}
+                `;
                 projectListDiv.appendChild(projectCard);
             });
         } catch (error) { console.error('Error loading user projects:', error); projectListDiv.innerHTML = '<p class="empty-msg" style="color:red;">Error loading projects.</p>'; }
@@ -1345,25 +1340,97 @@
             if (blogs.length === 0) { blogListUl.innerHTML = '<li class="empty-msg">No blogs published yet.</li>'; return; }
             blogs.forEach(blog => {
                 const blogItem = document.createElement('li');
-                blogItem.innerHTML = `<a href="#/blogs?blogId=${blog.id}">${blog.title}</a> - ${new Date(blog.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}`;
+                blogItem.innerHTML = `
+                    <a href="#/blogs?blogId=${blog.id}">${blog.title}</a> - ${new Date(blog.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                    ${isExternalView ? `
+                        <div class="add-comment-section">
+                            <textarea id="commentOnBlog${blog.id}" placeholder="Add a comment..."></textarea>
+                            <button data-parent-id="${blog.id}" data-parent-type="blog">Comment</button>
+                        </div>
+                    ` : ''}
+                `;
                 blogListUl.appendChild(blogItem);
             });
         } catch (error) { console.error('Error loading user blogs:', error); blogListUl.innerHTML = '<li class="empty-msg" style="color:red;">Error loading blogs.</li>'; }
     }
     async function loadUserComments(userId, isExternalView) {
         const commentListUl = document.getElementById(isExternalView ? 'userProfileCommentList' : 'commentList');
-        if (!commentListUl) return; commentListUl.innerHTML = '<li class="empty-msg">Loading comments...</li>';
+        if (!commentListUl) return; commentListUl.innerHTML = '<li class="empty-msg">Loading comments...</p>';
         try {
-            const res = await fetch(`${commentBaseUrl}?userId=${userId}`, { headers: { Authorization: `Bearer ${token}` } });
-            if (!res.ok) { throw new Error(`Failed to fetch comments: ${res.status}`);}
-            const comments = await res.json(); commentListUl.innerHTML = '';
-            if (comments.length === 0) { commentListUl.innerHTML = '<li class="empty-msg">No public comments.</li>'; return; }
-            comments.forEach(comment => {
+            // First, load comments MADE BY this user
+            const madeByRes = await fetch(`${commentBaseUrl}?userId=${userId}`, { headers: { Authorization: `Bearer ${token}` } });
+            let madeByComments = [];
+            if (madeByRes.ok) {
+                madeByComments = await madeByRes.json();
+            } else {
+                console.warn(`Failed to fetch comments made by user ${userId}: ${madeByRes.status}`, await madeByRes.json().catch(() => ({})));
+            }
+
+            let commentsOnMyContent = [];
+            // If it's my own profile (not external), also load comments ON my content
+            // Simplified condition for clarity: if on comments page, assume current user.
+            // If you wanted to view another user's comments on their content, you'd need a userId param on /comments route.
+
+            // Get current user's blogs
+            const myBlogsRes = await fetch(`${blogBaseUrl}?authorId=${currentLoggedInUserId}`, { headers: { Authorization: `Bearer ${token}` } });
+            if (myBlogsRes.ok) {
+                const myBlogs = await myBlogsRes.json();
+                for (const blog of myBlogs) {
+                    const commentsRes = await fetch(`${commentBaseUrl}?blogPostId=${blog.id}`, { headers: { Authorization: `Bearer ${token}` } });
+                    if (commentsRes.ok) {
+                        commentsOnMyContent.push(...await commentsRes.json());
+                    } else {
+                        console.warn(`Failed to fetch comments on blog ${blog.id}: ${commentsRes.status}`);
+                    }
+                }
+            } else {
+                console.warn(`Failed to fetch current user's blogs for comments: ${myBlogsRes.status}`);
+            }
+
+            // Get current user's projects
+            const myProjectsRes = await fetch(`${projectBaseUrl}?creatorId=${currentLoggedInUserId}`, { headers: { Authorization: `Bearer ${token}` } });
+            if (myProjectsRes.ok) {
+                const myProjects = await myProjectsRes.json();
+                for (const project of myProjects) {
+                    const commentsRes = await fetch(`${commentBaseUrl}?projectId=${project.id}`, { headers: { Authorization: `Bearer ${token}` } });
+                    if (commentsRes.ok) {
+                        commentsOnMyContent.push(...await commentsRes.json());
+                    } else {
+                        console.warn(`Failed to fetch comments on project ${project.id}: ${commentsRes.status}`);
+                    }
+                }
+            } else {
+                console.warn(`Failed to fetch current user's projects for comments: ${myProjectsRes.status}`);
+            }
+
+
+            // Combine and deduplicate comments
+            const allComments = [...madeByComments, ...commentsOnMyContent];
+            const uniqueComments = Array.from(new Map(allComments.map(item => [item.id, item])).values()); // Deduplicate by comment ID
+
+            commentListUl.innerHTML = '';
+            if (uniqueComments.length === 0) {
+                commentListUl.innerHTML = '<li class="empty-msg">No comments to display.</li>';
+                return;
+            }
+
+            uniqueComments.forEach(comment => {
                 const commentItem = document.createElement('li');
                 const parentType = comment.blogPost ? 'Blog' : (comment.project ? 'Project' : 'N/A');
-                commentItem.innerHTML = `${comment.content.substring(0, 50)}${comment.content.length > 50 ? '...' : ''} (on ${parentType})`;
+                const parentId = comment.blogPost ? comment.blogPost.id : (comment.project ? comment.project.id : 'N/A');
+                const parentTitle = comment.blogPost ? comment.blogPost.title : (comment.project ? comment.project.title : 'N/A');
+
+                commentItem.innerHTML = `
+                    "${comment.content.substring(0, 70)}${comment.content.length > 70 ? '...' : ''}"
+                    <span style="font-size: 0.8em; color: #7e879e;">
+                        - by ${comment.user ? comment.user.username : 'Unknown'}
+                        on ${parentType}: <a href="#/${parentType.toLowerCase()}s?id=${parentId}">${parentTitle}</a>
+                        (${new Date(comment.commentedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })})
+                    </span>
+                `;
                 commentListUl.appendChild(commentItem);
             });
+
         } catch (error) { console.error('Error loading user comments:', error); commentListUl.innerHTML = '<li class="empty-msg" style="color:red;">Error loading comments.</li>'; }
     }
 
@@ -1378,15 +1445,13 @@
         commentListDiv.innerHTML = '<p style="text-align:center; color:#94a3b8; width:100%;">Loading comments...</p>';
 
         try {
-            // Fetch all users for admin
             const usersRes = await fetch(userBaseUrl, { headers: { Authorization: `Bearer ${token}` } });
-            if (!usersRes.ok) { if (usersRes.status === 401 || usersRes.status === 403) { alert('Session expired or unauthorized. Please log in.'); logout(); return; } throw new Error(`Failed to fetch all users: ${usersRes.status}`); }
+            if (!usersRes.ok) { if (usersRes.status === 401 || usersRes.status === 403) { alert('Session expired or unauthorized. Please log in.'); logout(); return; } const errorResult = usersRes.json().catch(() => ({ message: 'Server error' })); throw new Error(errorResult.message || `Failed to fetch all users: ${usersRes.status}`); }
             const users = await usersRes.json();
             renderAdminUsers(users);
 
-            // Fetch all comments for admin
             const commentsRes = await fetch(commentBaseUrl, { headers: { Authorization: `Bearer ${token}` } });
-            if (!commentsRes.ok) { if (commentsRes.status === 401 || commentsRes.status === 403) { alert('Session expired or unauthorized. Please log in.'); logout(); return; } const errorResult = await commentsRes.json().catch(() => ({ message: 'Server error' })); throw new Error(errorResult.message || `Failed to fetch all comments: ${commentsRes.status}`); }
+            if (!commentsRes.ok) { if (commentsRes.status === 401 || commentsRes.status === 403) { alert('Session expired or unauthorized. Please log in.'); logout(); return; } const errorResult = commentsRes.json().catch(() => ({ message: 'Server error' })); throw new Error(errorResult.message || `Failed to fetch all comments: ${commentsRes.status}`); }
             const comments = await commentsRes.json();
             renderAdminComments(comments);
 
@@ -1424,7 +1489,7 @@
         if (!confirm(`Are you sure you want to delete user with ID: ${userId}? This action cannot be undone.`)) { return; }
         try {
             const res = await fetch(`${userBaseUrl}/${userId}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } });
-            if (!res.ok) { if (res.status === 401 || res.status === 403) { alert('Session expired or unauthorized. Please log in.'); logout(); return; } const errorResult = await res.json().catch(() => ({ message: 'Failed to delete user' })); throw new Error(errorResult.message || `Failed to delete user: ${res.status}`); }
+            if (!res.ok) { if (res.status === 401 || res.status === 403) { alert('Session expired or unauthorized. Please log in.'); logout(); return; } const errorResult = res.json().catch(() => ({ message: 'Server error' })); throw new Error(errorResult.message || `Failed to delete user: ${res.status}`); }
             alert('User deleted successfully!'); await loadAdminContent();
         } catch (error) { console.error('Error deleting user:', error); alert('Error: ' + error.message); }
     }
@@ -1455,7 +1520,7 @@
         if (!confirm(`Are you sure you want to delete comment with ID: ${commentId}?`)) { return; }
         try {
             const res = await fetch(`${commentBaseUrl}/${commentId}`, { method: 'DELETE', headers: { Authorization: `Bearer ${token}` } });
-            if (!res.ok) { if (res.status === 401 || res.status === 403) { alert('Session expired or unauthorized. Please log in.'); logout(); return; } const errorResult = await res.json().catch(() => ({ message: 'Server error' })); throw new Error(errorResult.message || `Failed to delete comment: ${res.status}`); }
+            if (!res.ok) { if (res.status === 401 || res.status === 403) { alert('Session expired or unauthorized. Please log in.'); logout(); return; } const errorResult = res.json().catch(() => ({ message: 'Server error' })); throw new Error(errorResult.message || `Failed to delete comment: ${res.status}`); }
             alert('Comment deleted successfully!'); await loadAdminContent();
         } catch (error) { console.error('Error deleting comment:', error); alert('Error: ' + error.message); }
     }
